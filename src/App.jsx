@@ -127,10 +127,12 @@ export default function App() {
   // ── Format answer — converts markdown-style to readable text ─────
   const formatAnswer = (text) => {
     return text
+      .replace(/^#{1,3}\s+(.+)$/gm, "<strong>$1</strong>")
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+      .replace(/\*(.*?)\*/g, "<em>$1</em>")
+      .replace(/^-\s+(.+)$/gm, "• $1")
       .replace(/\n\n/g, "<br/><br/>")
-      .replace(/\n/g, "<br/>")
-      .replace(/^#{1,3}\s+(.+)$/gm, "<strong>$1</strong>");
+      .replace(/\n/g, "<br/>");
   };
 
   return (
